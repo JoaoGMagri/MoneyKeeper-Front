@@ -2,14 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import styled from 'styled-components';
 
-import SingIn from './pages/SignIn';
+import Login from './pages/Login';
 
 function App() {
   return (
     <Container>
       <Router>
         <Routes>
-          <Route path="/" element={<SingIn/>}/>
+          <Route path="/" element={<Login/>}/>
         </Routes>
       </Router>
       

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import sessionsHooks from '../hooks/api/useSession';
 
 
 type PropsAuthForm = {
@@ -16,6 +17,9 @@ type UserSubmitForm = {
 };
 
 function AuthForm( props: PropsAuthForm ) {
+  
+  const { functionSignUp } = sessionsHooks.useSignUp();
+  const { functionSignIn } = sessionsHooks.useSignIn();
 
   const validationSchemaSingUp = Yup.object().shape({
     fullname: Yup.string().required('Fullname is required'),
@@ -35,8 +39,14 @@ function AuthForm( props: PropsAuthForm ) {
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm<UserSubmitForm>({resolver: yupResolver(schema)});
 
-  const onSubmit = (data: UserSubmitForm) => {
-    console.log(JSON.stringify(data, null, 2));
+  async function onSubmit(data: UserSubmitForm) {
+    if ( props.state ) {
+      const test = await functionSignUp(data.email, data.password, data.fullname);
+      console.log("form", test);
+    } else {
+      const test = await functionSignIn(data.email, data.password);
+      console.log(test);
+    }
   };
 
   return (

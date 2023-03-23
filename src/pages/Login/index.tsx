@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-/* import SingIn from "../../components/signIn";
-import SingUp from "../../components/signUp"; */
 import AuthForm from "../../components/AuthForm";
 
 function Login() {

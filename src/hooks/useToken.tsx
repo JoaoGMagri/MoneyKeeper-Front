@@ -3,5 +3,6 @@ export default function useToken() {
     if (!token) {
         return false;
     }
-    return {Authorization: `Bearer ${token}`};
+    const headers = {Authorization: `Bearer ${token}`}
+    return {headers};
 }

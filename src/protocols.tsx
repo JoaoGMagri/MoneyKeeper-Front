@@ -20,9 +20,11 @@ export type spendingType = {
 };
 
 export type spendingInfosType = {
+    id: number;
     name: string;
     type: string;
     value: string;
+    functionSpendingGet: Function;
 }
 
 export type Props = {

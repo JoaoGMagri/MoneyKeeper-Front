@@ -11,7 +11,7 @@ import NewSpendingForm from "../../components/NewSpendingForm";
 function Home() {
   const navigate = useNavigate();
   const { Spending , functionSpendingGet } = useGetSpeding();
-  console.log("index", Spending)
+
   const token = useToken()
   if (!token) {
     navigate("/");
@@ -23,7 +23,7 @@ function Home() {
         <TopBar/>
 
         <ContainerNewSpending>
-          <NewSpendingForm functionSpendingGet={functionSpendingGet}/>
+          <NewSpendingForm model={"CREATED"} functionSpendingGet={functionSpendingGet}/>
         </ContainerNewSpending>
 
         <ContainerBoxSpendings>
@@ -31,9 +31,11 @@ function Home() {
           {Spending?.map( (element:spendingType) => { 
             return <BoxSpending 
             key={element.id} 
+            id={element.id}
             type={element.type}
             name={element.name}
-            value={element.value}/>
+            value={element.value}
+            functionSpendingGet={functionSpendingGet}/>
             } )}
         </ContainerBoxSpendings>
       </ContainerPage>

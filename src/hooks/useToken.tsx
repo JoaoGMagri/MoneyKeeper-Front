@@ -1,5 +1,7 @@
 export default function useToken() {
     const token = window.localStorage.getItem("token");
-
-    return token;
+    if (!token) {
+        return false;
+    }
+    return {Authorization: `Bearer ${token}`};
 }

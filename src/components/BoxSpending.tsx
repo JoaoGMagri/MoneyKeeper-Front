@@ -26,9 +26,9 @@ const ContainerBoxSpending = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    
     h1{
-        font-size:20px;
+        font-size:18px;
         margin-bottom: 5px;
     }
 `

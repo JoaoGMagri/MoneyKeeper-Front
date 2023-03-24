@@ -1,8 +1,8 @@
-import { getSpendingService } from "../../service/getSpending";
+import { postSpendingService } from "../../service/postSpending";
 import { useAsync } from "../useAsync";
 import useToken from "../useToken";
 
-export default function useGetSpeding() {
+export default function usePostSpeding() {
 
     const token = useToken();
 
@@ -10,13 +10,13 @@ export default function useGetSpeding() {
       data: Spending,
       loading: SpendingLoading,
       error: SpendingError,
-      act: functionSpendingGet
-    } = useAsync( () => getSpendingService(token) );
+      act: functionSpendingPost
+    } = useAsync((data:any) => postSpendingService(data, token), false);
     
     return {
       SpendingLoading,
       SpendingError,
       Spending,
-      functionSpendingGet
+      functionSpendingPost
     };
 }

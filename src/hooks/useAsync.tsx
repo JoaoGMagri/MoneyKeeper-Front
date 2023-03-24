@@ -4,7 +4,7 @@ export function useAsync(handler:any, immediate = true) {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(immediate);
   const [error, setError] = useState(null);
-
+  console.log(data);
   const act = async(...args:any) => {
     setLoading(true);
     setError(null);

@@ -1,22 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import sessionsHooks from '../hooks/api/useSession';
-import errorsMensage from '../utils/erros';
 import { useNavigate } from 'react-router-dom';
 
-
-type PropsAuthForm = {
-    state: boolean;
-}
-
-type UserSubmitForm = {
-  fullname: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
+import sessionsHooks from '../hooks/api/useSession';
+import errorsMensage from '../utils/erros';
+import { PropsAuthForm, UserSubmitForm } from '../protocols';
 
 function AuthForm( props: PropsAuthForm ) {
   const navigate = useNavigate()

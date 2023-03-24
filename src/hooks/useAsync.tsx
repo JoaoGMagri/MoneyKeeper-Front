@@ -17,7 +17,7 @@ export function useAsync(handler:any, immediate = true) {
     } catch (err:any) {
       setError(error);
       setLoading(false);
-      return err;
+      return {error:true, status:err?.response?.request?.status};
     }
   };
 

@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import sessionsHooks from '../hooks/api/useSession';
+import errorsMensage from '../utils/erros';
+import { useNavigate } from 'react-router-dom';
 
 
 type PropsAuthForm = {
@@ -17,7 +19,7 @@ type UserSubmitForm = {
 };
 
 function AuthForm( props: PropsAuthForm ) {
-  
+  const navigate = useNavigate()
   const { functionSignUp } = sessionsHooks.useSignUp();
   const { functionSignIn } = sessionsHooks.useSignIn();
 
@@ -41,11 +43,22 @@ function AuthForm( props: PropsAuthForm ) {
 
   async function onSubmit(data: UserSubmitForm) {
     if ( props.state ) {
-      const test = await functionSignUp(data.email, data.password, data.fullname);
-      console.log("form", test);
+
+      const resp = await functionSignUp(data.email, data.password, data.fullname);
+      if(resp?.error) errorsMensage(resp.status);
+
     } else {
-      const test = await functionSignIn(data.email, data.password);
-      console.log(test);
+
+      const resp = await functionSignIn(data.email, data.password);
+      if (resp?.error) {
+        console.log(resp)
+        errorsMensage(resp.status);
+      } else {
+        navigate('/home');
+        console.log(resp)
+        localStorage.setItem("token", resp.response.token);
+      }
+
     }
   };
 

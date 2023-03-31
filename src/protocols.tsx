@@ -1,5 +1,6 @@
 export type PropsAuthForm = {
     state: boolean;
+    function: Function;
 }
 
 export type UserSubmitForm = {

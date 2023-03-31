@@ -7,6 +7,11 @@ import NewSpendingForm from "./NewSpendingForm";
 function BoxSpending({ id, name, type, value, functionSpendingGet }: spendingInfosType) {
   const [editStatus, setEditStatus] = useState(false);
 
+  if(type === "OUTPUT") {
+    value = "-" + value;
+  }
+  const teste = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'BRL'}).format(Number(value));
+  
   function edit() {
     setEditStatus(!editStatus);
   }
@@ -17,14 +22,12 @@ function BoxSpending({ id, name, type, value, functionSpendingGet }: spendingInf
         <h1>{name}</h1>
 
         <ValueSpending type={type}>
-          {type === "OUTPUT" && <>-</>}
-          {value}
-          <span>R$</span>
+          {teste}
         </ValueSpending>
       </ContainerBoxSpending>
       <ContainerEditor onClick={edit} editStatus={editStatus} />
       <BoxEditor editStatus={editStatus}>
-        <NewSpendingForm model={"UPDATE"} setEditStatus={setEditStatus} functionSpendingGet={functionSpendingGet} value={value} type={type} name={name} id={id}/>
+        <NewSpendingForm model={"UPDATE"} functionSpendingGet={functionSpendingGet} setEditStatus={setEditStatus} value={value} type={type} name={name} id={id}/>
       </BoxEditor>  
       
     </>

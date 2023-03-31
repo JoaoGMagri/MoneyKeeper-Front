@@ -23,7 +23,7 @@ function Home() {
         <TopBar/>
 
         <ContainerNewSpending>
-          <NewSpendingForm model={"CREATED"} functionSpendingGet={functionSpendingGet}/>
+          <NewSpendingForm model={"CREATED"} functionSpendingGet={functionSpendingGet} setEditStatus={console.log}/>
         </ContainerNewSpending>
 
         <ContainerBoxSpendings>

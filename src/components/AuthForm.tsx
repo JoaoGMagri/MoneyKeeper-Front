@@ -90,18 +90,18 @@ function AuthForm(props: PropsAuthForm) {
           </>
         )}
 
-        <div>
+        <BoxButtons>
           <button type="submit"> 
             {props.state ? "Registrar" : "Entrar"}  
           </button>
 
           {props.state && (<button type="button" onClick={() => reset()}>Cancelar</button>)}
-        </div>
+        </BoxButtons>
 
-        <div>
+        <BoxMensageSwitcher>
           {!props.state && <span onClick={() => {props.function(false)}}>Não tem conta, clique aqui para criar uma.</span> }
           {props.state && <span onClick={() => {props.function(true)}}>Já tem uma conta, clique aqui para logar.</span> }
-        </div>
+        </BoxMensageSwitcher>
 
       </FormContainer>
     </>
@@ -110,7 +110,7 @@ function AuthForm(props: PropsAuthForm) {
 
 export default AuthForm;
 
-const FormContainer = styled.form`
+const FormContainer = styled.form<any>`
   width: 100%;
   
   display: flex;
@@ -119,7 +119,7 @@ const FormContainer = styled.form`
   align-items: center;
   
   input{
-    width: 50%;
+    width: 52%;
     height: 50px;
     padding: 5px;
     box-sizing: border-box;
@@ -127,11 +127,79 @@ const FormContainer = styled.form`
     font-size: 15px;
     border-radius: 5px;
   }
-`;
 
+  @media (max-width: 600px) {
+    input{
+      width: 100%;
+      height: 50px;
+    }
+  }
+`;
+const BoxButtons = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  button{
+    width: 15em;
+    position: relative;
+    height: 3.5em;
+    border: 3px ridge #A36041;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    transition: 1s;
+    border-radius: 0.3em;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+    ::after {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 3%;
+      width: 95%;
+      height: 40%;
+      background-color: #2A2E31;
+      transition: 0.5s;
+      transform-origin: center;
+    }
+
+    ::before {
+      content: "";
+      transform-origin: center;
+      position: absolute;
+      top: 80%;
+      left: 3%;
+      width: 95%;
+      height: 40%;
+      background-color: #2A2E31;
+      transition: 0.5s;
+    }
+
+    :hover::before, :hover::after {
+      transform: scale(0)
+    }
+
+    :hover {
+      box-shadow: inset 0px 0px 25px #A36041;
+    }
+  }
+`;
+const BoxMensageSwitcher = styled.div`
+  :hover{
+    cursor: pointer
+  }
+
+  @media (max-width: 600px){
+    display: none;
+  }
+`;
 const MensagerError = styled.div`
   color: #FF0000;
   margin-bottom: 10px;
   margin-top: 5px;
 
-`
+`;

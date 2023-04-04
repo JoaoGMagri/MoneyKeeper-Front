@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Poppins:wght@400;700;900&display=swap');
 
 * {
   box-sizing: border-box;
-  transition: all ease .2s;
+  /* transition: all ease 0.2s; */
 }
 
 body {
   background-color: #1B1F22;
-  font-family: "Lexend Deca", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }

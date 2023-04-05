@@ -25,6 +25,7 @@ export type spendingInfosType = {
     name: string;
     type: string;
     value: string;
+    createdAt:string;
     functionSpendingGet: Function;
 }
 

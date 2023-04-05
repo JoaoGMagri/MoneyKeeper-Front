@@ -5,9 +5,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import styled from "styled-components";
 
-import sessionsHooks from "../hooks/api/useSession";
-import errorsMensage from "../utils/erros";
-import { PropsAuthForm, UserSubmitForm } from "../protocols";
+import sessionsHooks from "../../hooks/api/useSession";
+import errorsMensage from "../../utils/erros";
+import { PropsAuthForm, UserSubmitForm } from "../../protocols";
 
 function AuthForm(props: PropsAuthForm) {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ function AuthForm(props: PropsAuthForm) {
   const { functionSignIn } = sessionsHooks.useSignIn();
 
   const validationSchemaSingUp = Yup.object().shape({
-    fullname: Yup.string().required("Nome completo é necessario"),
+    fullname: Yup.string().required("Nome é necessario"),
     email: Yup.string().required("Email é necessario").email("Email é invalido"),
     password: Yup.string()
       .required("Senha é necessario")

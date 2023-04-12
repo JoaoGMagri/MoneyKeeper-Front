@@ -29,6 +29,11 @@ const ContainerGroups = styled.div`
   
     border-radius: 10px; 
     background-color: #2A2E31;
+
+    @media(max-width: 750px){
+        margin-top: 10px;
+        height: 80%;
+    } 
 `;
 
 const TextValues = styled.div`

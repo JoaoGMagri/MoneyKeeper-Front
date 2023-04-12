@@ -72,7 +72,7 @@ function NewSpendingForm({ model, functionSpendingGet, value="0", name="", type=
 
   return (
     <>
-      <ContainerForm onSubmit={handleSubmit(onSubmit)}>
+      <ContainerForm onSubmit={handleSubmit(onSubmit)} model={model}>
 
         <BoxInputs>
 
@@ -113,7 +113,7 @@ function NewSpendingForm({ model, functionSpendingGet, value="0", name="", type=
 
 export default NewSpendingForm;
 
-const ContainerForm = styled.form`
+const ContainerForm = styled.form<any>`
   width: 100%;
   height: 100%;
   
@@ -121,6 +121,22 @@ const ContainerForm = styled.form`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  
+  @media(max-width: 750px){
+    width: 100%;
+    height: ${(props:any) => (props.model === "CREATED" ? "100vh" : "100%")};
+
+    margin-top: ${(props:any) => (props.model === "CREATED" ? "20px" : "0px")};
+
+    border-radius: ${(props:any) => (props.model === "CREATED" ? "10px" : "0px")}; 
+    background-color: ${(props: any) => (props.model === "CREATED" ? "#2A2E31" : "")};;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+  } 
 `;
 
 const BoxInputs = styled.div`
@@ -130,6 +146,15 @@ const BoxInputs = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  @media(max-width: 750px){
+    margin-top: 50px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  } 
 `;
 const BoxSelect = styled.div`
   width: 100%;
@@ -145,6 +170,14 @@ const BoxButtons = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+
+  @media(max-width: 750px){
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  } 
 `;
 
 
@@ -157,6 +190,11 @@ const Select = styled.select`
   background: transparent;
   border: none;
   border-bottom: 1px solid #515151;
+
+  @media(max-width: 750px){
+    margin-top: 70px;
+    width: 90%;
+  } 
 `
 /* Estilo dos inputs */
 const highlightAnimation = keyframes`
@@ -196,9 +234,19 @@ const Input = styled.input`
   &:focus ~ .highlight {
     animation: ${highlightAnimation} 0.3s ease;
   }
+
+  @media(max-width: 750px){
+    width: 90%;
+  }
+ 
 `;
 const Group = styled.div`
   position: relative;
+
+  @media(max-width: 750px){
+    margin-top: 30px;
+    width: 90%;
+  }
 `;
 const Label = styled.label`
   color: #999;
@@ -215,7 +263,7 @@ const Label = styled.label`
 const Bar = styled.span`
   position: relative;
   display: block;
-  width: 200px;
+  width: 100%;
 
   &::before,
   &::after {
@@ -299,4 +347,8 @@ const Button = styled.button`
   :hover {
     box-shadow: inset 0px 0px 25px #A36041;
   }
+
+  @media(max-width: 750px){
+    margin-top: 70px;
+  } 
 `;

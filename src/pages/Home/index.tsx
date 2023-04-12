@@ -16,6 +16,7 @@ function Home() {
 
   const [valueFilter, setValueFilter] = useState("ANY");
   const [spendingFilter, setSpengingFilter] = useState(Spending);
+  const [MenuMobileStatus, setMenuMobileStatus] = useState("Menu1");
 
   const token = useToken()
   if (!token) {
@@ -35,9 +36,44 @@ function Home() {
     }
   }
 
+
   return (
     <ContainerPage>
       <TopBar/>
+
+
+      <BoxMenuMobile>
+        <div onClick={() => setMenuMobileStatus("Menu1")}>Receita</div>
+        <div onClick={() => setMenuMobileStatus("Menu2")}>Grupos</div>
+        <div onClick={() => setMenuMobileStatus("Menu3")}>Criar</div>
+      </BoxMenuMobile>
+
+      <ContainerReceitaMobile MenuMobileStatus={MenuMobileStatus}>
+
+          <ListSpending 
+            spendingFilter={spendingFilter} 
+            valueFilter={valueFilter} 
+            filter={filter} 
+            functionSpendingGet={functionSpendingGet}
+          />
+
+          <SumarySpending Spending={Spending} filter={filter}/>
+      </ContainerReceitaMobile>
+
+      <ContainerGroupsMobile MenuMobileStatus={MenuMobileStatus}>
+        <Groups/>
+      </ContainerGroupsMobile>
+
+      <ContainerCreatedMobile MenuMobileStatus={MenuMobileStatus}>
+        <NewSpendingForm model={"CREATED"} functionSpendingGet={functionSpendingGet} setEditStatus={console.log}/>
+      </ContainerCreatedMobile>
+
+
+
+
+
+
+
 
       {/* Layout maior que 750px */}
       <ContainerRight>
@@ -80,6 +116,17 @@ const ContainerPage = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+
+  @media(max-width: 750px){
+    height: 100%;
+    padding: 10px;
+    margin-top: 70px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    scroll-behavior: unset;
+  } 
 `;
 const ContainerRight = styled.div`
   width: 65%;
@@ -101,7 +148,6 @@ const ContainerLeft = styled.div`
   height: 90%;
   padding: 10px;
 
-  overflow-y: scroll;
   border-radius: 10px; 
   background-color: #2A2E31;
 
@@ -134,3 +180,49 @@ const BoxTopRigth = styled.div`
 `;
 
 
+const BoxMenuMobile = styled.div`
+  display: none;
+
+  @media(max-width: 750px){
+    width: 100%;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+
+  } 
+`
+
+const ContainerReceitaMobile = styled.div<any>`
+  display: none;
+
+  @media(max-width: 750px){
+    width: 100%;
+    height: 85vh;
+
+    display: ${(props: any) => (props.MenuMobileStatus === "Menu1" ? "flex" : "none")};
+    flex-direction: column;
+  } 
+`;
+const ContainerGroupsMobile = styled.div<any>`
+  display: none;
+
+  @media(max-width: 750px){
+    width: 100%;
+    height: 85vh;
+
+    display: ${(props: any) => (props.MenuMobileStatus === "Menu2" ? "flex" : "none")};
+    flex-direction: column;
+  } 
+`;
+const ContainerCreatedMobile = styled.div<any>`
+  display: none;
+
+  @media(max-width: 750px){
+    width: 100%;
+    height: 85vh;
+
+    display: ${(props: any) => (props.MenuMobileStatus === "Menu3" ? "flex" : "none")};
+    flex-direction: column;
+  } 
+`;

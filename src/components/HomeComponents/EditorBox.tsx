@@ -46,4 +46,12 @@ const BoxEditor = styled.div<any>`
     
     border-radius: 50px;
     background-color: #2A2E31;
+
+    @media(max-width: 750px){
+        width: 80%;
+        height: 60%;
+        position: absolute;
+      right: 10%;
+      top: 15%;
+    } 
 `;

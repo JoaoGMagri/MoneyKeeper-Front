@@ -76,7 +76,7 @@ const BoxDescription = styled.div`
     color: #999;
     font-size: 10px;
   }
-`
+`;
 
 const ValueSpending = styled.div<any>`
   color: ${(props: any) => (props.type === "OUTPUT" ? "#A36041" : "#576E43")};

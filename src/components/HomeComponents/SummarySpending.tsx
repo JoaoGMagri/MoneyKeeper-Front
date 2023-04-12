@@ -73,6 +73,11 @@ const ContainerSummary = styled.div`
   
     border-radius: 10px; 
     background-color: #2A2E31;
+
+    @media(max-width: 750px){
+        width: 100%;
+        height: 15%;
+    } 
 `;
 
 const BoxValues = styled.div`
@@ -86,15 +91,29 @@ const BoxValues = styled.div`
 
         padding: 10px;
     }
+
+    @media(max-width: 750px){
+        /* flex-direction: row; */
+
+        div{
+            padding: 4px;
+        }
+    } 
 `;
 
 const TextValues = styled.div`
     color: #999;
     font-size: 2vw;
     :hover { cursor: pointer; }
+    @media(max-width: 750px){
+        font-size: 2.5vw;
+    }
 `;
 const ValueSummary = styled.div<any>`
     color: ${(props: any) => (props.type ? "#576E43" : "#A36041")};
     font-size: 2vw;
     :hover { cursor: pointer; }
+    @media(max-width: 750px){
+        font-size: 2.5vw;
+    }
 `;
